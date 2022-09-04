@@ -1,0 +1,28 @@
+
+    <h1 style="font-size:25px;color: #202A44;">Add New Product</h1>
+    <form [formGroup]="addproductform">
+        <div class="col-4">
+        <label  class="label label-default" for="product_Name">Product_Name: </label><br>
+        <input class="form-control"style="max-width: 767" id="product_Name" type="text" formControlName="product_Name"  (change)="txtChange()" placeholder="Enter Product Name"><br>
+    </div><div class="col-4">
+        <label for="product_Category">Product_Category: </label><br>
+        <input class="form-control"id="product_Category" type="text" formControlName="product_Category"  (change)="txtChange()" placeholder="Enter Product Category"><br>
+    </div><div class="col-4">
+        <label for="product_Description">Product_Description: </label><br>
+        <input class="form-control" id="product_Description" type="text" formControlName="product_Description"  (change)="txtChange()" placeholder="Enter Product Description"><br>
+    </div><div class="col-4">
+        <label for="product_Price">Product_Price: </label><br>
+        <input class="form-control"id="product_Price" type="number" formControlName="product_Price"  (change)="txtChange()" placeholder="Enter Product Price"><br>
+    </div><div class="col-4">
+        <label>Upload Image: </label>
+       <div class="custom-file fileInputProfileWrap">
+        <input class="form-control" type="file" (change)="CreateBase64String($event)" class="fileInputProfile form-control">
+       </div>
+    </div>
+    </form><br>
+         <button  class="btn btn-primary" type="submit" (click)="submit()" [disabled]="!addproductform.valid" style="background-color:#ffffff;color:black" >Submit</button><br>
+         <br><button class="btn btn-primary" (click)="Back()" style="background-color:#ffffff;color:black">Back</button>
+
+
+        
+

@@ -1,0 +1,90 @@
+<h1 style="font-size:30px;color: #202A44;top:25px;">Products in Cart</h1>
+<br>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Product_Name</th>
+        <th scope="col">Product_Description</th>
+       <th scope="col">Product_Price</th>
+       <th scope="col">Product_Quantity</th>
+       <th scope="col">Edit_Product_Quantity</th>
+       <th scope="col">Total_Product_Price</th>
+       <th scope="col">Delete_Product</th>
+
+      </tr>
+    </thead>
+
+      <tbody>
+        <tr *ngFor="let cart of productsincart">
+          <th scope="row">{{cart.product_Name}}</th>
+          <td>{{cart.product_Description}}</td>
+          <td>{{cart.product_Price}} EGP</td>
+          <td>{{cart.product_Quantity}}</td>
+          <td><form [formGroup]="quantityupdateform">
+            <input id="newquantity" type="number" formControlName="newquantity" style="width: 25%;">
+        <button  class="btn btn-primary" type="submit" [disabled]="!quantityupdateform.valid" (click)="update(cart.cartId,cart)" style="background-color:#ffffff;color:black; left: 100px;" >Edit</button><br>
+      </form>
+      </td>
+          <td>{{cart.total_Product_Price}} EGP</td>
+          <td>
+            <button  class="btn btn-primary" type="submit" (click)="delete(cart.cartId)" style="background-color:#ffffff;color:black" >Delete Product</button><br>
+          </td>
+        </tr>
+      </tbody>
+ </table>
+
+<div *ngIf="productsincart?.length">
+
+  <h1 style="font-size:30px;color: #202A44;top:25px;">Total Order Price is : {{overallprice()}} EGP</h1>
+  <h1 style="font-size:20px;color: #202A44;"></h1><br>
+<div *ngIf="!showForm">
+<button class="btn btn-primary" (click)="Order()" style="position:relative; left: 1330px;top:-60px;background-color:#ffffff;color:black">Confirm Order</button>
+</div>
+<div *ngIf="showForm">
+<form [formGroup]="detailsform" >
+  <div class="row" style="margin: 0;">
+    <div class="col-4">
+  <label  class="label label-default" for="CustomerName">Customer_Name: </label><br>
+  <input id="CustomerName" class="form-control"type="text" formControlName="CustomerName"  (change)="txtChange()" placeholder="Enter your name" form><br>
+</div>
+<div class="col-4">
+  <label for="Customerphone">Customer_Phone_Number: </label><br>
+  <input id="Customerphone" class="form-control" type="text" formControlName="Customerphone"  (change)="txtChange()" placeholder="Enter your phone number"><br>
+</div>
+<div class="col-4">
+  <label for="CustomerEmail">Customer_Email: </label><br>
+  <input id="CustomerEmail" class="form-control" type="text" formControlName="CustomerEmail"  (change)="txtChange()" placeholder="Enter your email address"><br>
+</div>
+</div>
+<div class="row" style="margin: 0;">
+  <div class="col-8">
+  <label for="Customeraddress">Customer_Address: </label><br>
+  <input id="Customeraddress" class="form-control" type="text" formControlName="Customeraddress"  (change)="txtChange()" placeholder="Enter your address"><br>
+  </div>
+  <div class="col-4">
+  <label for="CustomerCountry">Customer_Country: </label><br>
+  <input id="CustomerCountry" class="form-control" type="text" formControlName="CustomerCountry"  (change)="txtChange()" placeholder="Enter your country"><br>
+</div>
+<div >
+  <label for="comments">Customer_Comments: </label><br>
+  <input id="comments"class="form-control"  type="text" formControlName="comments"  (change)="txtChange()" placeholder="Enter your comments"><br>
+</div>
+</div>
+</form>
+<div>
+  <button class="btn btn-primary" (click)="okay()"  style="position:relative; background-color:#ffffff;color:black">Submit</button>
+
+</div>
+
+
+</div>
+
+<div *ngIf="!showForm">
+<button class="btn btn-primary" (click)="Cancel()" style="position:relative; left: 1340px;top:-50px;background-color:#ffffff;color:black">Cancel Order</button>
+<button class="btn btn-primary" (click)="Back()" style="position:relative; left: 1180px;top:0px;background-color:#ffffff;color:black">Add more products</button><br>
+</div>
+</div>
+<div *ngIf="!productsincart?.length">
+<br><button class="btn btn-primary" (click)="Back()" style="background-color:#ffffff;color:black">Add products</button><br>
+</div>

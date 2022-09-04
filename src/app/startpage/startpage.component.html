@@ -1,0 +1,43 @@
+<div class="toolbar">
+    <img src="../../assets/images/logo.png" height="40" width="200" />
+    <h1 class="display-1" style="margin-top: 15px; left: 10px; font-size:25px;color: #202A44;">Internship Order System
+    </h1>
+    <button class="btn btn-primary" (click)="AddNewProduct()"
+        style="font-weight: 40;position:relative; left: 570px;background-color:#ffffff;color: #202A44">
+        <img src="../../assets/images/add.png" height="25" width="25" />Add New Product</button>
+    <button class="btn btn-primary" (click)="ViewMyCart()"
+        style="font-weight: 40;position:relative; left:580px; background-color:#ffffff;color: #202A44">
+        <img src="../../assets/images/cart.jpg" height="25" width="25" />View My Cart</button>
+    <button class="btn btn-primary" (click)="ViewMyOrders()"
+        style="font-weight: 40;position:relative; left:590px; background-color:#ffffff;color: #202A44">
+        <img src="../../assets/images/order.png" height="25" width="25" />View My Orders</button>
+</div>
+<br>
+<h1 style="font-size:30px;color: #202A44;top:25px;">Available Products</h1>
+<br>
+<div class="row" style="margin: 0;">
+
+    <div class=" col-4" *ngFor="let product of products"  style="padding: 0;">
+        <div class="card"  style="margin:8px ;">
+            <div class="card-body">
+                <h5 class="card-title" style="font-size:25px;color:#99dfff">{{product.product_Name}}</h5>
+                <p class="card-text">Product Category: {{product.product_Category}}</p>
+                <p class="card-text">Product Description: {{product.product_Description}}</p>
+                <p class="card-text">Product Price: {{product.product_Price}} EGP</p>
+
+                <form [formGroup]="quantityform">
+                    <label for="quantity">Quantity:</label>
+                    <input id="quantity" type="number" formControlName="quantity" (change)="txtChange()"
+                        placeholder="Enter required quantity">
+                    <img src="{{APIUrl+product.product_Image}}" alt="Selected Image" height="100" width="100"
+                        style="position:relative;top: -150px;left:105px">
+
+                    <button class="btn btn-primary" (click)="addtoCart(product)" [disabled]="!this.quantityform.valid"
+                        style="font-weight: 40;background-color:#ffffff;color: #202A44">Add to Cart</button>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

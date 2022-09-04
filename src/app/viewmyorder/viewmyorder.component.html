@@ -1,0 +1,19 @@
+<div class="row" style="margin: 0;">
+    <div class=" col-4"*ngFor="let order of orders" style="padding: 0;">
+        <div class="card " style="margin:8px ;" >
+        <div class="card-body" >
+            <h5 class="card-title" style="font-size:25px;color:#99dfff">Order with Order_ID: {{order.orderId}}</h5>
+            <p class="card-text">Customer_Name: {{order.customer_Name}}</p>
+            <p class="card-text">Customer_Phone: {{order.customer_Phone}}</p>
+            <p class="card-text">Customer_Email: {{order.customer_Email}}</p>
+            <p class="card-text">Customer_Address: {{order.customer_Address}}</p>
+            <p class="card-text">Customer_Country: {{order.customer_Country}}</p>
+            <p class="card-text">Order_Total_Amount: {{order.total}} EGP</p>
+            <p class="card-text">Order_Placed_Date: {{order.order_Order_Date | date}}</p>
+            <button class="btn btn-primary" (click)="continue(order.orderId)" style="font-weight: 40;background-color:#ffffff;color: #202A44">View More Details</button>
+            <br>
+        </div> 
+    </div>
+</div>
+</div>
+<button class="btn btn-primary" (click)="Back()" style="background-color:#ffffff;color:black">Back</button>
